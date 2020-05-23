@@ -1,8 +1,18 @@
-var express = require('express'),
-    dotenv = require('dotenv').config(),
+'use strict'
+
+require('dotenv').config()
+
+const express = require('express'),
     app = express(),
-    port = process.env.PORT || 3000
+    bodyParser = require('body-parser'),
+    port = process.env.PORT,
+    routes = require('./app/routes/approutes')
 
 app.listen(port)
 
 console.log('task list RESTful API server started on: '+ port)
+
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+
+routes(app)
