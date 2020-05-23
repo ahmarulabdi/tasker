@@ -1,6 +1,7 @@
 var express = require('express'),
-app = express(),
-port = process.env.PORT || 3000
+    dotenv = require('dotenv').config(),
+    app = express(),
+    port = process.env.PORT || 3000
 
 app.listen(port)
 
