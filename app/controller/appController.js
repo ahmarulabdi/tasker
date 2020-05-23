@@ -10,3 +10,10 @@ exports.list_all_tasks = function (req, res) {
         res.send(task)
     })
 }
+
+exports.read_a_task = function (req, res) {
+    TaskModel.getTaskById(req.params.taskId, function (err, task) {
+        if(err) res.send()
+        res.json(task)
+    })
+}
