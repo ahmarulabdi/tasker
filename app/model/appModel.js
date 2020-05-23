@@ -1,6 +1,6 @@
 'use strict'
 
-const connection = require('./db.js')
+const sql = require('./db.js')
 
 // Task model constructor
 const Task = function (task) {
@@ -10,7 +10,7 @@ const Task = function (task) {
 }
 
 Task.getAllTask = function (result) {
-    connection.query("Select * from tasks", function (err, res) {
+    sql.query("Select * from tasks", function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -23,7 +23,7 @@ Task.getAllTask = function (result) {
 }
 
 Task.getTaskById = function (taskId, result) {
-    connection.query("select task from tasks where id = ? ", taskId, function (err, res) {
+    sql.query("select task from tasks where id = ? ", taskId, function (err, res) {
         if(err) {
             console.log('error: ', err)
             result(err, null)
