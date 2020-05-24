@@ -51,4 +51,12 @@ Task.updatedTaskById = function(taskId, updatedTask, result) {
         result(null, updatedTask)
     })
 }
+
+Task.deleteTaskById = function(taskId, result) {
+    sql.query("delete from tasks where id = ?", taskId, function (err, res) {
+        console.log(res)
+        if(err) result(err, null)
+        result(null, 1)
+    })
+}
 module.exports = Task

@@ -56,3 +56,10 @@ exports.update_a_task = function (req, res) {
     }
 
 }
+
+exports.delete_a_task = function (req, res) {
+    TaskModel.deleteTaskById(req.params.taskId, function (err, isDeleted) {
+        if(err) res.send(err)
+        if(isDeleted) res.json({'message': 'successfully deleted'})
+    })
+}
