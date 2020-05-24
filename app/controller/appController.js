@@ -5,7 +5,7 @@ const TaskModel = require('../model/appModel')
 exports.list_all_tasks = function (req, res) {
     TaskModel.getAllTask(function (err, task) {
         console.log('controller')
-        if(err) res.send(err)
+        if (err) res.send(err)
         console.log('res', task)
         res.send(task)
     })
@@ -13,7 +13,7 @@ exports.list_all_tasks = function (req, res) {
 
 exports.read_a_task = function (req, res) {
     TaskModel.getTaskById(req.params.taskId, function (err, task) {
-        if(err) res.send()
+        if (err) res.send()
         res.json(task)
     })
 }
@@ -26,9 +26,9 @@ exports.create_a_task = function (req, res) {
             error: true,
             message: 'Please provide task/s1'
         })
-    } else{
+    } else {
         TaskModel.createTask(newTask, function (err, task) {
-            if(err) res.send(err)
+            if (err) res.send(err)
             res.json(task)
         })
     }
@@ -43,14 +43,14 @@ exports.update_a_task = function (req, res) {
             error: true,
             message: 'Please provide a task/s1'
         })
-    } else if(taskId == null){
+    } else if (taskId == null) {
         res.status(400).send({
             error: true,
             message: 'Task not found'
         })
     } else {
         TaskModel.updatedTaskById(taskId, updatedTask, function (err, task) {
-            if(err) res.send(err)
+            if (err) res.send(err)
             res.json(task)
         })
     }
@@ -59,7 +59,7 @@ exports.update_a_task = function (req, res) {
 
 exports.delete_a_task = function (req, res) {
     TaskModel.deleteTaskById(req.params.taskId, function (err, isDeleted) {
-        if(err) res.send(err)
-        if(isDeleted) res.json({'message': 'successfully deleted'})
+        if (err) res.send(err)
+        if (isDeleted) res.json({'message': 'successfully deleted'})
     })
 }

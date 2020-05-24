@@ -10,7 +10,7 @@ const express = require('express'),
 
 app.listen(port)
 
-console.log('task list RESTful API server started on: '+ port)
+console.log('task list RESTful API server started on: ' + port)
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())

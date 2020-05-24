@@ -11,11 +11,10 @@ const Task = function (task) {
 
 Task.getAllTask = function (result) {
     sql.query("Select * from tasks", function (err, res) {
-        if(err) {
+        if (err) {
             console.log("error: ", err);
             result(err, null);
-        }
-        else{
+        } else {
             console.log('tasks : ', res);
             result(null, res);
         }
@@ -24,7 +23,7 @@ Task.getAllTask = function (result) {
 
 Task.getTaskById = function (taskId, result) {
     sql.query("select task from tasks where id = ? ", taskId, function (err, res) {
-        if(err) {
+        if (err) {
             console.log('error: ', err)
             result(err, null)
         } else {
@@ -45,17 +44,17 @@ Task.createTask = function (newTask, result) {
     })
 }
 
-Task.updatedTaskById = function(taskId, updatedTask, result) {
-    sql.query("update tasks set task = ?, status = ? where id = ?", [updatedTask.task, updatedTask.status, taskId] ,function (err, res) {
-        if(err) result(err, null)
+Task.updatedTaskById = function (taskId, updatedTask, result) {
+    sql.query("update tasks set task = ?, status = ? where id = ?", [updatedTask.task, updatedTask.status, taskId], function (err, res) {
+        if (err) result(err, null)
         result(null, updatedTask)
     })
 }
 
-Task.deleteTaskById = function(taskId, result) {
+Task.deleteTaskById = function (taskId, result) {
     sql.query("delete from tasks where id = ?", taskId, function (err, res) {
         console.log(res)
-        if(err) result(err, null)
+        if (err) result(err, null)
         result(null, 1)
     })
 }
