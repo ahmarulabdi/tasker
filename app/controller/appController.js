@@ -33,3 +33,26 @@ exports.create_a_task = function (req, res) {
         })
     }
 }
+
+exports.update_a_task = function (req, res) {
+    let updatedTask = new TaskModel(req.body)
+    let taskId = req.params.taskId
+
+    if (typeof updatedTask.task === "undefined" || typeof updatedTask.status == "undefined") {
+        res.status(400).send({
+            error: true,
+            message: 'Please provide a task/s1'
+        })
+    } else if(taskId == null){
+        res.status(400).send({
+            error: true,
+            message: 'Task not found'
+        })
+    } else {
+        TaskModel.updatedTaskById(taskId, updatedTask, function (err, task) {
+            if(err) res.send(err)
+            res.json(task)
+        })
+    }
+
+}

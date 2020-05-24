@@ -44,4 +44,11 @@ Task.createTask = function (newTask, result) {
         }
     })
 }
+
+Task.updatedTaskById = function(taskId, updatedTask, result) {
+    sql.query("update tasks set task = ?, status = ? where id = ?", [updatedTask.task, updatedTask.status, taskId] ,function (err, res) {
+        if(err) result(err, null)
+        result(null, updatedTask)
+    })
+}
 module.exports = Task

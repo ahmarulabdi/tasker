@@ -7,4 +7,5 @@ module.exports = function (app) {
 
     app.route('/tasks/:taskId')
         .get(taskController.read_a_task)
+        .put(taskController.update_a_task)
 }
