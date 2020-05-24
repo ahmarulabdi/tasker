@@ -3,6 +3,7 @@ module.exports = function (app) {
 
     app.route('/tasks')
         .get(taskController.list_all_tasks)
+        .post(taskController.create_a_task)
 
     app.route('/tasks/:taskId')
         .get(taskController.read_a_task)

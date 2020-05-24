@@ -33,4 +33,15 @@ Task.getTaskById = function (taskId, result) {
     })
 }
 
+Task.createTask = function (newTask, result) {
+    sql.query("insert into tasks set ?", newTask, function (err, res) {
+        if (err) {
+            console.log('error: ', err)
+            result(err, null)
+        } else {
+            console.log(res.insertId)
+            result(null, res.insertId)
+        }
+    })
+}
 module.exports = Task

@@ -17,3 +17,19 @@ exports.read_a_task = function (req, res) {
         res.json(task)
     })
 }
+
+exports.create_a_task = function (req, res) {
+    let newTask = new TaskModel(req.body)
+    console.log(newTask)
+    if (typeof newTask.task === "undefined" || typeof newTask.status == "undefined") {
+        res.status(400).send({
+            error: true,
+            message: 'Please provide task/s1'
+        })
+    } else{
+        TaskModel.createTask(newTask, function (err, task) {
+            if(err) res.send(err)
+            res.json(task)
+        })
+    }
+}
